@@ -16,18 +16,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "border-b border-gold/25" : "border-b border-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
       style={
         scrolled
           ? {
               background: "rgba(28, 31, 26, 0.82)",
-              backdropFilter: "blur(18px)",
-              WebkitBackdropFilter: "blur(18px)",
-              boxShadow: "0 8px 32px rgba(28, 31, 26, 0.12)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.25)",
             }
-          : { background: "transparent" }
+          : { background: "transparent", borderBottom: "1px solid transparent" }
       }
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 py-3.5">
@@ -41,7 +40,7 @@ export default function Navbar() {
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `font-sans text-sm font-medium tracking-wide transition-colors duration-300 ${
+                `font-sans text-sm font-medium tracking-wide transition-colors duration-200 ${
                   isActive ? "text-gold" : "text-cream/85 hover:text-gold"
                 }`
               }

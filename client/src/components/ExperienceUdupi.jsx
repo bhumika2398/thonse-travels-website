@@ -41,7 +41,7 @@ export default function ExperienceUdupi() {
                 className="animate-float"
                 style={{ animationDuration: clip.floatDuration, animationDelay: clip.floatDelay }}
               >
-                <div className="glass-strong overflow-hidden rounded-3xl p-3">
+                <div className="glass-light overflow-hidden rounded-3xl p-3">
                   <div className="overflow-hidden rounded-2xl">
                     <video
                       className="h-64 w-full object-cover sm:h-80"

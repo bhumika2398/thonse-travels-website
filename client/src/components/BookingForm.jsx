@@ -15,6 +15,9 @@ const initialState = {
   notes: "",
 };
 
+const FIELD_CLASS =
+  "field-input w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink";
+
 export default function BookingForm() {
   const [searchParams] = useSearchParams();
   const [fleet, setFleet] = useState([]);
@@ -60,7 +63,7 @@ export default function BookingForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-strong rounded-3xl p-7 sm:p-9 space-y-5">
+    <form onSubmit={handleSubmit} className="glass-light rounded-3xl p-7 sm:p-9 space-y-5">
       <h3 className="font-display text-2xl font-semibold text-ink">Request a Booking</h3>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -76,7 +79,7 @@ export default function BookingForm() {
             value={form.vehicle}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+            className={FIELD_CLASS}
           >
             <option value="">Select a vehicle</option>
             {fleet.map((v) => (
@@ -102,7 +105,7 @@ export default function BookingForm() {
           value={form.notes}
           onChange={handleChange}
           rows={3}
-          className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+          className={FIELD_CLASS}
         />
       </div>
 
@@ -132,7 +135,7 @@ function Field({ label, name, value, onChange, type = "text", required = false }
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+        className={FIELD_CLASS}
       />
     </div>
   );

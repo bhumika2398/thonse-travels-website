@@ -3,6 +3,9 @@ import { createContact } from "../api/client.js";
 
 const initialState = { name: "", email: "", phone: "", subject: "", message: "" };
 
+const FIELD_CLASS =
+  "field-input w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink";
+
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState({ state: "idle", message: "" });
@@ -28,7 +31,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-strong rounded-3xl p-7 sm:p-9 space-y-5">
+    <form onSubmit={handleSubmit} className="glass-light rounded-3xl p-7 sm:p-9 space-y-5">
       <h3 className="font-display text-2xl font-semibold text-ink">Send Us a Message</h3>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -41,7 +44,7 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+            className={FIELD_CLASS}
           />
         </div>
         <div>
@@ -52,7 +55,7 @@ export default function ContactForm() {
             name="phone"
             value={form.phone}
             onChange={handleChange}
-            className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+            className={FIELD_CLASS}
           />
         </div>
         <div className="sm:col-span-2">
@@ -64,7 +67,7 @@ export default function ContactForm() {
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+            className={FIELD_CLASS}
           />
         </div>
         <div className="sm:col-span-2">
@@ -76,7 +79,7 @@ export default function ContactForm() {
             value={form.subject}
             onChange={handleChange}
             placeholder="e.g. Package enquiry, feedback, group booking…"
-            className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+            className={FIELD_CLASS}
           />
         </div>
       </div>
@@ -91,7 +94,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={4}
-          className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-gold"
+          className={FIELD_CLASS}
         />
       </div>
 

@@ -58,7 +58,7 @@ export default function About() {
 
             <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
               {STATS.map((s) => (
-                <div key={s.label} className="glass-card rounded-2xl px-4 py-5 text-center">
+                <div key={s.label} className="glass-card glass-light rounded-2xl px-4 py-5 text-center">
                   <p className="font-display text-2xl font-semibold text-gold-dark">{s.value}</p>
                   <p className="mt-1 text-xs uppercase tracking-wide text-ink/60">{s.label}</p>
                 </div>

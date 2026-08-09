@@ -30,7 +30,7 @@ export default function Contact() {
 
             <div className="flex flex-col gap-8 lg:col-span-2">
               <Reveal delay={100}>
-                <div className="glass-strong rounded-3xl p-7 sm:p-9">
+                <div className="glass-light rounded-3xl p-7 sm:p-9">
                   <h3 className="font-display text-2xl font-semibold text-ink">
                     Contact Details
                   </h3>

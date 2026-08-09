@@ -17,7 +17,7 @@ export default function RideCard({ vehicle }) {
     priceUnit === "fixed" ? `₹${priceFrom} fixed fare` : `From ₹${priceFrom}/km`;
 
   return (
-    <div className="glass-card group flex h-full flex-col overflow-hidden">
+    <div className="glass-card glass-light group flex h-full flex-col overflow-hidden">
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={`/images/${image}`}

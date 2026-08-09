@@ -21,7 +21,7 @@ export default function SearchStrip() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="glass-strong flex w-full max-w-4xl flex-col divide-y divide-gold/25 rounded-2xl lg:flex-row lg:divide-x lg:divide-y-0 lg:rounded-full"
+      className="glass-dark flex w-full max-w-4xl flex-col divide-y divide-white/15 rounded-2xl lg:flex-row lg:divide-x lg:divide-y-0 lg:rounded-full"
     >
       <label className="flex-1 px-6 py-4">
         <span className="block text-[11px] font-semibold uppercase tracking-wider text-gold-light">

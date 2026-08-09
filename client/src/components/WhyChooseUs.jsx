@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REASONS.map((r, i) => (
             <Reveal key={r.title} delay={i * 100}>
-              <div className="glass-card h-full p-7">
+              <div className="glass-card glass-dark h-full p-7">
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-gradient text-xl">
                   {r.icon}
                 </span>

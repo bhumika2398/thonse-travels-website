@@ -1,9 +1,10 @@
 import { useState } from "react";
 import StarRating from "./StarRating.jsx";
+import Reveal from "./Reveal.jsx";
 
 function ReviewCard({ review }) {
   return (
-    <blockquote className="glass-card h-full p-7">
+    <blockquote className="glass-card glass-light h-full p-7">
       <StarRating rating={review.rating} />
       <p className="mt-4 font-display text-base italic leading-relaxed text-ink/90">
         “{review.quote}”
@@ -34,8 +35,10 @@ export default function ReviewsSection({ reviews }) {
   return (
     <div>
       <div className="grid gap-6 sm:grid-cols-3">
-        {primary.map((review) => (
-          <ReviewCard key={review.name} review={review} />
+        {primary.map((review, i) => (
+          <Reveal key={review.name} delay={i * 100}>
+            <ReviewCard review={review} />
+          </Reveal>
         ))}
       </div>
 
@@ -61,7 +64,11 @@ export default function ReviewsSection({ reviews }) {
 
       {extra.length > 0 && (
         <div className="mt-10 flex justify-center">
-          <button type="button" onClick={() => setShowAll((v) => !v)} className="btn-outline !text-ink !border-gold-dark/50 hover:!bg-gold/10">
+          <button
+            type="button"
+            onClick={() => setShowAll((v) => !v)}
+            className="btn-outline !text-ink !border-gold-dark/50 hover:!bg-gold/10"
+          >
             {showAll ? "Show Less" : "View More Reviews"}
           </button>
         </div>

@@ -34,6 +34,26 @@ h4 {
   color: var(--ink);
 }
 
+/* Baseline visible focus state for every interactive element site-wide,
+   so anything not already using .btn-gold/.btn-outline/.field-input
+   still gets a clear, smooth focus ring. */
+a,
+button,
+input,
+select,
+textarea {
+  transition: color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out,
+    box-shadow 0.2s ease-out, opacity 0.2s ease-out;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(184, 147, 95, 0.6);
+  outline-offset: 2px;
+}
+
 /* Thin gold-tinted scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -49,49 +69,83 @@ h4 {
 
 @layer components {
   /*
-   * Glassmorphism — the canonical treatment used on every card, panel,
-   * accordion item, search strip, and the scrolled navbar. Values match
-   * spec exactly: translucent cream fill, 18px blur, gold-tinted 1px
-   * border, soft shadow, 20px radius.
+   * Glassmorphism — two explicit variants, picked per component based on
+   * what sits BEHIND the glass (never a one-size-fits-all treatment,
+   * since a light tint over a light background reads as almost nothing).
+   *
+   * .glass-dark  — for elements over dark/photographic backdrops
+   *                (Hero video, Why Thonse's charcoal section, the
+   *                scrolled navbar): a white highlight lifted off dark.
+   * .glass-light — for elements over cream/light sections (Fleet,
+   *                Destinations, Reviews, FAQ, forms): a frosted white
+   *                plate with a gold-tinted edge.
+   * Pair either with .glass-card for the shared radius + hover-lift.
    */
-  .glass {
-    background: rgba(247, 243, 236, 0.18);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(184, 147, 95, 0.25);
-    box-shadow: 0 8px 32px rgba(28, 31, 26, 0.12);
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   }
 
-  .glass-strong {
-    background: rgba(247, 243, 236, 0.18);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+  .glass-light {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(184, 147, 95, 0.25);
-    box-shadow: 0 8px 32px rgba(28, 31, 26, 0.12);
+    box-shadow: 0 8px 28px rgba(28, 31, 26, 0.1);
+  }
+
+  /* Small pill badges (Hero trust badges, footer badge) always sit on
+     dark backdrops, so .glass is just a radius-free alias of .glass-dark. */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   }
 
   .glass-card {
-    @apply glass-strong transition-all duration-500 ease-out;
     border-radius: 20px;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
   }
 
   .glass-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(28, 31, 26, 0.22);
-    border-color: rgba(184, 147, 95, 0.55);
+    transform: translateY(-4px);
+  }
+
+  .glass-card.glass-dark:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  .glass-card.glass-light:hover {
+    box-shadow: 0 16px 40px rgba(28, 31, 26, 0.18);
+    border-color: rgba(184, 147, 95, 0.5);
   }
 
   .btn-gold {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient
       px-7 py-3.5 font-sans font-semibold text-charcoal shadow-gold-glow
-      transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glass-lg
+      transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-glass-lg
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2
       active:translate-y-0;
   }
 
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60
       bg-transparent px-7 py-3.5 font-sans font-semibold text-cream
-      transition-all duration-300 ease-out hover:bg-gold/10 hover:-translate-y-0.5;
+      transition-all duration-200 ease-out hover:bg-gold/10 hover:-translate-y-0.5
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2;
+  }
+
+  /* Consistent, visible focus ring for form fields (border-color change
+     alone isn't enough of a signal on its own). */
+  .field-input {
+    @apply transition-colors duration-200 ease-out focus:outline-none focus:border-gold
+      focus:ring-2 focus:ring-gold/30;
   }
 
   .section-eyebrow {
@@ -177,8 +231,8 @@ h4 {
 /* Scroll-reveal: JS toggles .is-visible via IntersectionObserver */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 

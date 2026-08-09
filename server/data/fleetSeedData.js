@@ -15,7 +15,7 @@ export const fleetSeedData = [
   {
     slug: "swift-dzire",
     name: "Swift Dzire",
-    tagline2: "The Executive Sedan",
+    tagline2: "Swift Dzire",
     seats: 5,
     passengerCapacity: "4 passengers + driver",
     image: "swift-car.png",
@@ -32,7 +32,7 @@ export const fleetSeedData = [
   {
     slug: "ertiga",
     name: "Ertiga",
-    tagline2: "The Family MPV",
+    tagline2: "Ertiga",
     seats: 7,
     passengerCapacity: "6 passengers + driver",
     image: "ertiga-car.png",
