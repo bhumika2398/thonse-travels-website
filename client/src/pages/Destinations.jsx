@@ -20,7 +20,7 @@ export default function Destinations() {
         imageAlt="St. Mary's Island Udupi rock formations at sunset"
       />
 
-      <section className="section-glow-light section-pad">
+      <section className="section-glow-destinations section-pad">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {destinations.map((destination, i) => (

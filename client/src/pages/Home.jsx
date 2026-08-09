@@ -76,7 +76,7 @@ export default function Home() {
       <ExperienceUdupi />
 
       {/* DESTINATIONS — the site's main visual showcase */}
-      <section className="section-glow-light section-pad">
+      <section className="section-glow-destinations section-pad">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
             <p className="section-eyebrow">The Udupi Coast</p>
