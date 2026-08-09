@@ -89,20 +89,22 @@ textarea:focus-visible {
     /* Drop shadow (spec) + an inset top-edge highlight — the actual visual
        cue that reads as "glass" (light catching the top edge of a pane)
        rather than "flat card slightly lighter than its background". */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      inset 0 0 40px rgba(255, 255, 255, 0.04);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
   }
 
   .glass-light {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid rgba(184, 147, 95, 0.3);
-    box-shadow: 0 8px 28px rgba(28, 31, 26, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(184, 147, 95, 0.4);
+    box-shadow: 0 10px 30px rgba(28, 31, 26, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
   }
 
   /* Small pill badges (Hero trust badges, footer badge) always sit on
-     dark backdrops, so .glass is just a radius-free alias of .glass-dark. */
+     dark backdrops, so .glass is just a radius-free alias of .glass-dark
+     (radius overridden to rounded-full by whichever component uses it). */
   .glass {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
@@ -201,20 +203,30 @@ textarea:focus-visible {
  * visibly do something, replacing the bg-cream/bg-charcoal utility on
  * that section (don't use both on the same element).
  */
+/* A single small gradient near the top of a tall section (Fleet, FAQ,
+   Destinations, etc. often run 700-900px+) fades out long before it
+   reaches cards further down, leaving them sitting on a flat color again
+   — same invisible-blur problem, just further down the page. Repeating
+   the glow at multiple depths keeps every card, top to bottom of the
+   section, sitting on real color variation. */
 .section-glow-dark {
-  background: radial-gradient(circle at 15% 10%, rgba(220, 187, 133, 0.55) 0%, rgba(184, 147, 95, 0.2) 20%, transparent 42%),
-    radial-gradient(circle at 88% 20%, rgba(184, 147, 95, 0.35) 0%, transparent 35%),
-    radial-gradient(circle at 75% 90%, rgba(220, 187, 133, 0.3) 0%, transparent 38%),
-    radial-gradient(circle at 10% 85%, rgba(184, 147, 95, 0.22) 0%, transparent 35%),
-    linear-gradient(135deg, #242820 0%, #1c1f1a 55%, #15170f 100%);
+  background: radial-gradient(circle at 20% 10%, rgba(220, 187, 133, 0.5) 0%, rgba(184, 147, 95, 0.18) 22%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(184, 147, 95, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 15% 55%, rgba(184, 147, 95, 0.22) 0%, transparent 40%),
+    radial-gradient(circle at 90% 60%, rgba(220, 187, 133, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 25% 95%, rgba(184, 147, 95, 0.28) 0%, transparent 42%),
+    radial-gradient(circle at 80% 100%, rgba(220, 187, 133, 0.2) 0%, transparent 38%),
+    linear-gradient(160deg, #242820 0%, #1c1f1a 50%, #15170f 100%);
 }
 
 .section-glow-light {
-  background: radial-gradient(circle at 15% 10%, rgba(184, 147, 95, 0.4) 0%, rgba(184, 147, 95, 0.12) 22%, transparent 42%),
-    radial-gradient(circle at 88% 20%, rgba(184, 147, 95, 0.25) 0%, transparent 35%),
-    radial-gradient(circle at 75% 90%, rgba(28, 31, 26, 0.12) 0%, transparent 38%),
-    radial-gradient(circle at 10% 85%, rgba(184, 147, 95, 0.18) 0%, transparent 35%),
-    #f7f3ec;
+  background: radial-gradient(circle at 20% 10%, rgba(184, 147, 95, 0.38) 0%, rgba(184, 147, 95, 0.14) 22%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(184, 147, 95, 0.22) 0%, transparent 40%),
+    radial-gradient(circle at 15% 55%, rgba(184, 147, 95, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 90% 60%, rgba(28, 31, 26, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 25% 95%, rgba(184, 147, 95, 0.22) 0%, transparent 42%),
+    radial-gradient(circle at 80% 100%, rgba(184, 147, 95, 0.16) 0%, transparent 38%),
+    #f6f0e2;
 }
 
 /* Full-page fade on route change — avoids a hard white-flash cut. */

@@ -20,11 +20,17 @@ export default function Navbar() {
       style={
         scrolled
           ? {
+              // Same blur/border/shadow signature as .glass-dark, but with
+              // a charcoal (not pure white) tint — a navbar scrolls over
+              // both light and dark sections, and true .glass-dark's 8%
+              // white fill would leave cream nav text unreadable over a
+              // light section. This keeps the glass "feel" while staying
+              // legible everywhere.
               background: "rgba(28, 31, 26, 0.82)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.25)",
+              backdropFilter: "blur(20px) saturate(140%)",
+              WebkitBackdropFilter: "blur(20px) saturate(140%)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.18)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12)",
             }
           : { background: "transparent", borderBottom: "1px solid transparent" }
       }
