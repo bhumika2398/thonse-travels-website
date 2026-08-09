@@ -83,18 +83,22 @@ textarea:focus-visible {
    */
   .glass-dark {
     background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* Drop shadow (spec) + an inset top-edge highlight — the actual visual
+       cue that reads as "glass" (light catching the top edge of a pane)
+       rather than "flat card slightly lighter than its background". */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 0 40px rgba(255, 255, 255, 0.04);
   }
 
   .glass-light {
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(184, 147, 95, 0.25);
-    box-shadow: 0 8px 28px rgba(28, 31, 26, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(184, 147, 95, 0.3);
+    box-shadow: 0 8px 28px rgba(28, 31, 26, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
 
   /* Small pill badges (Hero trust badges, footer badge) always sit on
@@ -103,8 +107,18 @@ textarea:focus-visible {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Fleet-card badge pills (SWIFT DZIRE / ERTIGA / A SERVICE, NOT A VEHICLE) —
+     a lighter frosted chip that sits on top of the vehicle photo itself. */
+  .badge-glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
   }
 
   .glass-card {
@@ -179,40 +193,28 @@ textarea:focus-visible {
 }
 
 /*
- * Soft blurred color blobs behind a section, so glass-card's
- * backdrop-filter has visible detail to blur — on a perfectly flat
- * section background, backdrop-filter has nothing to show for itself.
+ * A section's background must never be a single flat solid color behind
+ * glass cards — backdrop-filter blurs whatever's there, and blurring a
+ * flat color just produces the same flat color, so the "glass" reads as
+ * a plain opaque box. These two classes give every glass-card section a
+ * real radial-gradient base with enough color variation for the blur to
+ * visibly do something, replacing the bg-cream/bg-charcoal utility on
+ * that section (don't use both on the same element).
  */
-.section-glow {
-  position: relative;
-  overflow: hidden;
+.section-glow-dark {
+  background: radial-gradient(circle at 15% 10%, rgba(220, 187, 133, 0.55) 0%, rgba(184, 147, 95, 0.2) 20%, transparent 42%),
+    radial-gradient(circle at 88% 20%, rgba(184, 147, 95, 0.35) 0%, transparent 35%),
+    radial-gradient(circle at 75% 90%, rgba(220, 187, 133, 0.3) 0%, transparent 38%),
+    radial-gradient(circle at 10% 85%, rgba(184, 147, 95, 0.22) 0%, transparent 35%),
+    linear-gradient(135deg, #242820 0%, #1c1f1a 55%, #15170f 100%);
 }
-.section-glow::before,
-.section-glow::after {
-  content: "";
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-}
-.section-glow::before {
-  width: 26rem;
-  height: 26rem;
-  top: -8rem;
-  right: -6rem;
-  background: rgba(184, 147, 95, 0.25);
-}
-.section-glow::after {
-  width: 22rem;
-  height: 22rem;
-  bottom: -8rem;
-  left: -6rem;
-  background: rgba(28, 31, 26, 0.07);
-}
-.section-glow > * {
-  position: relative;
-  z-index: 1;
+
+.section-glow-light {
+  background: radial-gradient(circle at 15% 10%, rgba(184, 147, 95, 0.4) 0%, rgba(184, 147, 95, 0.12) 22%, transparent 42%),
+    radial-gradient(circle at 88% 20%, rgba(184, 147, 95, 0.25) 0%, transparent 35%),
+    radial-gradient(circle at 75% 90%, rgba(28, 31, 26, 0.12) 0%, transparent 38%),
+    radial-gradient(circle at 10% 85%, rgba(184, 147, 95, 0.18) 0%, transparent 35%),
+    #f7f3ec;
 }
 
 /* Full-page fade on route change — avoids a hard white-flash cut. */

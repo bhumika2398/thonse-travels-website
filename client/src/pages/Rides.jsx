@@ -39,7 +39,7 @@ export default function Rides() {
         imageAlt="Ertiga rental car Udupi"
       />
 
-      <section className="section-glow bg-cream section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           {status === "loading" && (
             <p className="text-center text-ink/60">Loading our fleet…</p>

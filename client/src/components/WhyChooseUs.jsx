@@ -29,7 +29,7 @@ const REASONS = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-glow bg-charcoal section-pad">
+    <section className="section-glow-dark section-pad">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <p className="section-eyebrow-light">Why Thonse</p>

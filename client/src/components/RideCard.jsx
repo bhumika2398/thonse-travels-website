@@ -26,7 +26,7 @@ export default function RideCard({ vehicle }) {
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
-        <span className="absolute left-4 top-4 rounded-full bg-charcoal/70 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-gold-light border border-gold/30">
+        <span className="badge-glass absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider">
           {tagline2}
         </span>
       </div>

@@ -23,7 +23,7 @@ const CLIPS = [
  */
 export default function ExperienceUdupi() {
   return (
-    <section className="bg-cream-dim section-pad">
+    <section className="section-glow-light section-pad">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <p className="section-eyebrow">In Motion</p>

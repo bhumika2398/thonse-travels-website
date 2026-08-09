@@ -21,7 +21,7 @@ export default function Contact() {
         imageAlt="Pier sunset on the Udupi coast"
       />
 
-      <section className="bg-cream-dim section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-5">
             <Reveal className="lg:col-span-3">

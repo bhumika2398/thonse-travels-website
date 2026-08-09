@@ -27,7 +27,7 @@ export default function About() {
         imageAlt="Udupi coastline"
       />
 
-      <section className="bg-cream section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl shadow-glass-lg">

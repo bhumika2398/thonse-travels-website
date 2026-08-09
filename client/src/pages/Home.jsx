@@ -40,7 +40,7 @@ export default function Home() {
       <Hero />
 
       {/* FLEET + AIRPORT SERVICE — one row of three equal cards */}
-      <section className="section-glow bg-cream section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -76,7 +76,7 @@ export default function Home() {
       <ExperienceUdupi />
 
       {/* DESTINATIONS — the site's main visual showcase */}
-      <section className="section-glow bg-cream section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
             <p className="section-eyebrow">The Udupi Coast</p>
@@ -97,7 +97,7 @@ export default function Home() {
       </section>
 
       {/* FAQ — centered text/list layout, distinct from the grid sections */}
-      <section className="bg-cream-dim section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-5xl px-5 sm:px-8">
           <Reveal className="text-center">
             <p className="section-eyebrow">Questions</p>
@@ -114,7 +114,7 @@ export default function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section className="section-glow bg-cream section-pad">
+      <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal>
             <p className="section-eyebrow">Guest Stories</p>
