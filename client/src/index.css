@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Exact luxe palette — single source of truth for raw CSS (rgba, gradients). */
+  --cream: #f7f3ec;
+  --cream-dim: #efe8da;
+  --charcoal: #1c1f1a;
+  --gold: #b8935f;
+  --gold-light: #dcbb85;
+  --ink: #2b2f28;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display;
+}
+
+::selection {
+  background: rgba(184, 147, 95, 0.3);
+  color: var(--ink);
+}
+
+/* Thin gold-tinted scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--charcoal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 999px;
+}
+
+@layer components {
+  /*
+   * Glassmorphism — the canonical treatment used on every card, panel,
+   * accordion item, search strip, and the scrolled navbar. Values match
+   * spec exactly: translucent cream fill, 18px blur, gold-tinted 1px
+   * border, soft shadow, 20px radius.
+   */
+  .glass {
+    background: rgba(247, 243, 236, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(184, 147, 95, 0.25);
+    box-shadow: 0 8px 32px rgba(28, 31, 26, 0.12);
+  }
+
+  .glass-strong {
+    background: rgba(247, 243, 236, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(184, 147, 95, 0.25);
+    box-shadow: 0 8px 32px rgba(28, 31, 26, 0.12);
+  }
+
+  .glass-card {
+    @apply glass-strong transition-all duration-500 ease-out;
+    border-radius: 20px;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(28, 31, 26, 0.22);
+    border-color: rgba(184, 147, 95, 0.55);
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient
+      px-7 py-3.5 font-sans font-semibold text-charcoal shadow-gold-glow
+      transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glass-lg
+      active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60
+      bg-transparent px-7 py-3.5 font-sans font-semibold text-cream
+      transition-all duration-300 ease-out hover:bg-gold/10 hover:-translate-y-0.5;
+  }
+
+  .section-eyebrow {
+    @apply text-xs sm:text-sm uppercase tracking-[0.3em] text-gold-dark font-semibold;
+  }
+
+  .section-eyebrow-light {
+    @apply text-xs sm:text-sm uppercase tracking-[0.3em] text-gold-light font-semibold;
+  }
+
+  .section-title {
+    @apply mt-3 text-3xl sm:text-4xl md:text-5xl font-display font-semibold leading-tight text-ink;
+  }
+
+  .section-title-light {
+    @apply mt-3 text-3xl sm:text-4xl md:text-5xl font-display font-semibold leading-tight text-cream;
+  }
+
+  .section-sub {
+    @apply mt-4 max-w-2xl text-base text-ink/70 leading-relaxed;
+  }
+
+  .section-sub-light {
+    @apply mt-4 max-w-2xl text-base text-cream/65 leading-relaxed;
+  }
+
+  /* Consistent generous section rhythm — 110-140px vertical padding. */
+  .section-pad {
+    @apply py-28 md:py-32 lg:py-36;
+  }
+}
+
+/*
+ * Soft blurred color blobs behind a section, so glass-card's
+ * backdrop-filter has visible detail to blur — on a perfectly flat
+ * section background, backdrop-filter has nothing to show for itself.
+ */
+.section-glow {
+  position: relative;
+  overflow: hidden;
+}
+.section-glow::before,
+.section-glow::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+.section-glow::before {
+  width: 26rem;
+  height: 26rem;
+  top: -8rem;
+  right: -6rem;
+  background: rgba(184, 147, 95, 0.25);
+}
+.section-glow::after {
+  width: 22rem;
+  height: 22rem;
+  bottom: -8rem;
+  left: -6rem;
+  background: rgba(28, 31, 26, 0.07);
+}
+.section-glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Full-page fade on route change — avoids a hard white-flash cut. */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.page-transition {
+  animation: page-fade-in 0.4s ease-out;
+}
+
+/* Scroll-reveal: JS toggles .is-visible via IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-float {
+    animation: none !important;
+  }
+}
