@@ -1,7 +1,12 @@
-import { useState } from "react";
-import { createContact } from "../api/client.js";
+import { useRef, useState } from "react";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from "../api/web3forms.js";
 
-const initialState = { name: "", email: "", phone: "", subject: "", message: "" };
+const CONTACT_SUBJECT = "New Contact Message - Thonse Tours and Travels";
+
+// Note: the visitor-facing "Subject" field is bound to visitor_subject, not
+// "subject" — Web3Forms reserves the "subject" key to set the email's
+// subject line, which we pin to CONTACT_SUBJECT below.
+const initialState = { name: "", email: "", phone: "", visitor_subject: "", message: "" };
 
 const FIELD_CLASS =
   "field-input w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 text-sm text-ink";
@@ -9,6 +14,7 @@ const FIELD_CLASS =
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState({ state: "idle", message: "" });
+  const botcheckRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,15 +23,26 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot: if this hidden checkbox got checked, silently drop the submission.
+    if (botcheckRef.current?.checked) {
+      return;
+    }
+
     setStatus({ state: "loading", message: "" });
     try {
-      const res = await createContact(form);
+      const res = await submitToWeb3Forms({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: CONTACT_SUBJECT,
+        botcheck: false,
+        ...form,
+      });
       setStatus({ state: "success", message: res.message || "Message sent!" });
       setForm(initialState);
     } catch (err) {
       setStatus({
         state: "error",
-        message: err?.response?.data?.message || "Something went wrong. Please call us directly.",
+        message: err?.message || "Something went wrong. Please call us directly.",
       });
     }
   };
@@ -33,6 +50,10 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="glass-light rounded-3xl p-7 sm:p-9 space-y-5">
       <h3 className="font-display text-2xl font-semibold text-ink">Send Us a Message</h3>
+
+      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="subject" value={CONTACT_SUBJECT} />
+      <input type="checkbox" name="botcheck" ref={botcheckRef} tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -75,8 +96,8 @@ export default function ContactForm() {
             Subject
           </label>
           <input
-            name="subject"
-            value={form.subject}
+            name="visitor_subject"
+            value={form.visitor_subject}
             onChange={handleChange}
             placeholder="e.g. Package enquiry, feedback, group booking…"
             className={FIELD_CLASS}

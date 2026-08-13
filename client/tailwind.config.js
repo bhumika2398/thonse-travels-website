@@ -4,36 +4,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Exact luxe palette — do not introduce blue/orange/bright saturated colors.
+        // Luxury car-rental palette (champagne + onyx + pearl) — do not
+        // introduce blue/orange/bright saturated colors. Token names kept
+        // stable so every existing className repaints automatically.
         cream: {
-          DEFAULT: "#f7f3ec", // main background
-          dim: "#efe8da", // secondary light-section background
+          DEFAULT: "#f8f7f4", // pearl — main background
+          dim: "#f2efe8", // secondary light-section background
         },
         charcoal: {
-          DEFAULT: "#1c1f1a", // deep charcoal-forest — nav/footer/dark sections
-          soft: "#242820", // slightly lifted shade for layered dark panels
+          DEFAULT: "#0a0a0a", // near-black — nav/footer/dark sections
+          soft: "#1a1a1a", // onyx — slightly lifted shade for layered dark panels
         },
         gold: {
-          DEFAULT: "#b8935f", // muted gold — buttons/accents/borders only
-          light: "#dcbb85", // lighter gold — hover states/highlights
-          dark: "#8f7248", // deeper gold for text-on-light contrast
+          DEFAULT: "#c9a876", // champagne — buttons/accents/borders only
+          light: "#e0c9a0", // champagne-light — hover states/highlights
+          dark: "#a0865e", // deeper champagne for text-on-light contrast
         },
-        ink: "#2b2f28", // body text
+        ink: "#2b2b2b", // graphite — body text
       },
       fontFamily: {
-        display: ["'Fraunces'", "ui-serif", "serif"],
-        sans: ["'Inter'", "system-ui", "sans-serif"],
+        display: ["'Cormorant Garamond'", "ui-serif", "serif"],
+        sans: ["'Manrope'", "system-ui", "sans-serif"],
       },
       fontSize: {
         base: ["1.0625rem", { lineHeight: "1.7" }], // ~17px body copy
       },
       backgroundImage: {
-        "gold-gradient": "linear-gradient(135deg, #dcbb85 0%, #b8935f 55%, #8f7248 100%)",
+        "gold-gradient": "linear-gradient(135deg, #e0c9a0 0%, #c9a876 55%, #a0865e 100%)",
       },
       boxShadow: {
-        glass: "0 8px 32px 0 rgba(28, 31, 26, 0.25)",
-        "glass-lg": "0 20px 60px -10px rgba(28, 31, 26, 0.45)",
-        "gold-glow": "0 0 0 1px rgba(184, 147, 95, 0.35), 0 8px 30px -8px rgba(184, 147, 95, 0.5)",
+        glass: "0 8px 32px 0 rgba(10, 10, 10, 0.25)",
+        "glass-lg": "0 20px 60px -10px rgba(10, 10, 10, 0.45)",
+        "gold-glow": "0 0 0 1px rgba(201, 168, 118, 0.35), 0 8px 30px -8px rgba(201, 168, 118, 0.5)",
       },
       keyframes: {
         "fade-slide-up": {

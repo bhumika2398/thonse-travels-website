@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { createBooking, fetchFleet } from "../api/client.js";
+import { fetchFleet } from "../api/client.js";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from "../api/web3forms.js";
 import { airportService } from "../data/services.js";
+
+const BOOKING_SUBJECT = "New Booking Request - Thonse Tours and Travels";
 
 const initialState = {
   name: "",
@@ -23,6 +26,7 @@ export default function BookingForm() {
   const [fleet, setFleet] = useState([]);
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState({ state: "idle", message: "" });
+  const botcheckRef = useRef(null);
 
   useEffect(() => {
     fetchFleet()
@@ -48,16 +52,26 @@ export default function BookingForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot: if this hidden checkbox got checked, silently drop the submission.
+    if (botcheckRef.current?.checked) {
+      return;
+    }
+
     setStatus({ state: "loading", message: "" });
     try {
-      const res = await createBooking(form);
+      const res = await submitToWeb3Forms({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: BOOKING_SUBJECT,
+        botcheck: false,
+        ...form,
+      });
       setStatus({ state: "success", message: res.message || "Booking received!" });
       setForm(initialState);
     } catch (err) {
       setStatus({
         state: "error",
-        message:
-          err?.response?.data?.message || "Something went wrong. Please call us directly.",
+        message: err?.message || "Something went wrong. Please call us directly.",
       });
     }
   };
@@ -65,6 +79,10 @@ export default function BookingForm() {
   return (
     <form onSubmit={handleSubmit} className="glass-light rounded-3xl p-7 sm:p-9 space-y-5">
       <h3 className="font-display text-2xl font-semibold text-ink">Request a Booking</h3>
+
+      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="subject" value={BOOKING_SUBJECT} />
+      <input type="checkbox" name="botcheck" ref={botcheckRef} tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Full Name" name="name" value={form.name} onChange={handleChange} required />

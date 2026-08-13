@@ -7,7 +7,7 @@ import { destinations } from "../data/destinations.js";
 export default function Destinations() {
   useDocumentMeta(
     "Udupi Destinations | Beaches, Backwaters & Temples — Thonse Tours and Travels",
-    "Explore Udupi's best destinations with Thonse Tours and Travels: St. Mary's Island, Malpe Beach, Kaup Lighthouse, Thonse mangrove kayaking, Sri Krishna Matha, Murdeshwar, Kollur Mookambika, and Padubidri Beach — all with a professional driver."
+    "Explore Udupi's best destinations with Thonse Tours and Travels: St. Mary's Island, Malpe Beach, Kaup Lighthouse, Sri Krishna Matha, Murdeshwar, and Padubidri Beach — all with a professional driver."
   );
 
   return (
@@ -22,7 +22,7 @@ export default function Destinations() {
 
       <section className="section-glow-destinations section-pad">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {destinations.map((destination, i) => (
               <Reveal key={destination.slug} delay={i * 90}>
                 <DestinationCard destination={destination} />

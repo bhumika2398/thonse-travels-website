@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="bg-charcoal text-cream/80 border-t border-gold/20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
-          <Logo className="mb-5" />
+          <Logo className="mb-5" showIcon={false} />
           <p className="max-w-md text-sm leading-relaxed text-cream/60">
             Premium rides with a professional driver and curated destination journeys across
             Udupi and the Karnataka coast — helmed by {siteInfo.owner}, built on punctuality,

@@ -86,7 +86,7 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {destinations.map((destination, i) => (
               <Reveal key={destination.slug} delay={i * 90}>
                 <DestinationCard destination={destination} />
@@ -100,8 +100,8 @@ export default function Home() {
       <section className="section-glow-light section-pad">
         <div className="mx-auto max-w-5xl px-5 sm:px-8">
           <Reveal className="text-center">
-            <p className="section-eyebrow">Questions</p>
-            <h2 className="section-title">Frequently Asked</h2>
+            <p className="section-eyebrow">FAQ</p>
+            <h2 className="section-title">Frequently Asked Questions</h2>
             <p className="section-sub mx-auto">
               Everything travelers usually ask us, answered up front.
             </p>

@@ -1,20 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function RideCard({ vehicle }) {
-  const {
-    name,
-    tagline2,
-    passengerCapacity,
-    image,
-    imageAlt,
-    tagline,
-    highlights = [],
-    priceFrom,
-    priceUnit,
-  } = vehicle;
-
-  const priceLabel =
-    priceUnit === "fixed" ? `₹${priceFrom} fixed fare` : `From ₹${priceFrom}/km`;
+  const { name, tagline2, passengerCapacity, image, imageAlt, tagline, highlights = [] } = vehicle;
 
   return (
     <div className="glass-card glass-light group flex h-full flex-col overflow-hidden">
@@ -33,7 +20,9 @@ export default function RideCard({ vehicle }) {
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-2xl font-semibold text-ink">{name}</h3>
-        <p className="mt-1 text-sm font-medium text-gold-dark">{passengerCapacity}</p>
+        {passengerCapacity && (
+          <p className="mt-1 text-sm font-medium text-gold-dark">{passengerCapacity}</p>
+        )}
         <p className="mt-3 text-sm leading-relaxed text-ink/70">{tagline}</p>
 
         <ul className="mt-4 flex flex-wrap gap-2">
@@ -47,9 +36,11 @@ export default function RideCard({ vehicle }) {
           ))}
         </ul>
 
-        <div className="mt-6 flex items-center justify-between pt-4 border-t border-gold/20">
-          <span className="font-display text-lg font-semibold text-ink">{priceLabel}</span>
-          <Link to={`/contact?vehicle=${encodeURIComponent(name)}`} className="btn-gold !px-5 !py-2.5 text-sm">
+        <div className="mt-6 pt-4 border-t border-gold/20">
+          <Link
+            to={`/contact?vehicle=${encodeURIComponent(name)}`}
+            className="btn-gold !px-5 !py-2.5 text-sm"
+          >
             Book Now
           </Link>
         </div>

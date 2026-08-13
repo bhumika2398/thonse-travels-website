@@ -8,7 +8,6 @@ export const airportService = {
   slug: "airport-pickup-drop",
   name: "Airport Pickup & Drop",
   tagline2: "A Service, Not a Vehicle",
-  passengerCapacity: "Sedan or MPV, your choice",
   image: "airport.png",
   imageAlt: "Udupi airport taxi — Mangaluru International Airport pickup and drop service",
   tagline:
