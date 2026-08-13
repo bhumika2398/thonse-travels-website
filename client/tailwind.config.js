@@ -4,23 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Luxury car-rental palette (champagne + onyx + pearl) — do not
-        // introduce blue/orange/bright saturated colors. Token names kept
-        // stable so every existing className repaints automatically.
+        // Luxury car-rental palette (deep emerald + warm bronze + ivory) —
+        // do not introduce blue/orange/bright saturated colors. Token names
+        // kept stable so every existing className repaints automatically.
         cream: {
-          DEFAULT: "#f8f7f4", // pearl — main background
-          dim: "#f2efe8", // secondary light-section background
+          DEFAULT: "#faf8f3", // ivory — main background
+          dim: "#f4f0e7", // secondary light-section background
         },
         charcoal: {
-          DEFAULT: "#0a0a0a", // near-black — nav/footer/dark sections
-          soft: "#1a1a1a", // onyx — slightly lifted shade for layered dark panels
+          DEFAULT: "#0f2e28", // deep forest emerald-black — nav/footer/dark sections
+          soft: "#1f3e38", // lifted emerald — slightly lighter shade for layered dark panels
         },
         gold: {
-          DEFAULT: "#c9a876", // champagne — buttons/accents/borders only
-          light: "#e0c9a0", // champagne-light — hover states/highlights
-          dark: "#a0865e", // deeper champagne for text-on-light contrast
+          DEFAULT: "#c6a87c", // soft brass — buttons/accents/borders only
+          light: "#e2cba6", // pale brass — hover states/highlights
+          dark: "#9e8663", // deeper brass for text-on-light contrast
         },
-        ink: "#2b2b2b", // graphite — body text
+        ink: "#1c1c1c", // near-black — body text
       },
       fontFamily: {
         display: ["'Cormorant Garamond'", "ui-serif", "serif"],
@@ -30,12 +30,12 @@ export default {
         base: ["1.0625rem", { lineHeight: "1.7" }], // ~17px body copy
       },
       backgroundImage: {
-        "gold-gradient": "linear-gradient(135deg, #e0c9a0 0%, #c9a876 55%, #a0865e 100%)",
+        "gold-gradient": "linear-gradient(135deg, #e2cba6 0%, #c6a87c 55%, #9e8663 100%)",
       },
       boxShadow: {
-        glass: "0 8px 32px 0 rgba(10, 10, 10, 0.25)",
-        "glass-lg": "0 20px 60px -10px rgba(10, 10, 10, 0.45)",
-        "gold-glow": "0 0 0 1px rgba(201, 168, 118, 0.35), 0 8px 30px -8px rgba(201, 168, 118, 0.5)",
+        glass: "0 8px 32px 0 rgba(15, 46, 40, 0.25)",
+        "glass-lg": "0 20px 60px -10px rgba(15, 46, 40, 0.45)",
+        "gold-glow": "0 0 0 1px rgba(198, 168, 124, 0.35), 0 8px 30px -8px rgba(198, 168, 124, 0.5)",
       },
       keyframes: {
         "fade-slide-up": {

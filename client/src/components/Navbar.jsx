@@ -26,7 +26,7 @@ export default function Navbar() {
               // white fill would leave cream nav text unreadable over a
               // light section. This keeps the glass "feel" while staying
               // legible everywhere.
-              background: "rgba(10, 10, 10, 0.82)",
+              background: "rgba(15, 46, 40, 0.82)",
               backdropFilter: "blur(20px) saturate(140%)",
               WebkitBackdropFilter: "blur(20px) saturate(140%)",
               borderBottom: "1px solid rgba(255, 255, 255, 0.18)",
@@ -78,7 +78,7 @@ export default function Navbar() {
       {open && (
         <div
           className="lg:hidden border-t border-gold/20 px-5 py-6 flex flex-col gap-5"
-          style={{ background: "rgba(10, 10, 10, 0.95)", backdropFilter: "blur(20px)" }}
+          style={{ background: "rgba(15, 46, 40, 0.95)", backdropFilter: "blur(20px)" }}
         >
           {navLinks.map((link) => (
             <NavLink
