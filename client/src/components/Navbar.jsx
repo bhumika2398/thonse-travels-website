@@ -37,7 +37,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 py-3.5">
         <NavLink to="/" onClick={() => setOpen(false)} aria-label="Thonse Tours and Travels home">
-          <Logo />
+          <Logo showIcon={false} />
         </NavLink>
 
         <div className="hidden lg:flex items-center gap-8">

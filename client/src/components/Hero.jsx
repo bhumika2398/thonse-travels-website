@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CreditCard, Sparkles, ShieldCheck, Clock, MapPin } from "lucide-react";
 import { siteInfo } from "../data/siteInfo.js";
 import SearchStrip from "./SearchStrip.jsx";
 
@@ -7,11 +8,11 @@ import SearchStrip from "./SearchStrip.jsx";
 const VIDEO_ORDER = ["/videos/float-2.mp4", "/videos/float-1.mp4", "/videos/float-3.mp4"];
 
 const TRUST_BADGES = [
-  { icon: "💳", label: "No Hidden Charges" },
-  { icon: "✨", label: "Sanitised, Serviced Fleet" },
-  { icon: "🛡️", label: "Verified & Licensed Drivers" },
-  { icon: "🕐", label: "24×7 Support" },
-  { icon: "📍", label: "Live GPS Tracking" },
+  { Icon: CreditCard, label: "No Hidden Charges" },
+  { Icon: Sparkles, label: "Sanitised, Serviced Fleet" },
+  { Icon: ShieldCheck, label: "Verified & Licensed Drivers" },
+  { Icon: Clock, label: "24×7 Support" },
+  { Icon: MapPin, label: "Live GPS Tracking" },
 ];
 
 /**
@@ -96,13 +97,13 @@ export default function Hero() {
           className="mt-6 flex flex-wrap items-center gap-2.5 animate-fade-slide-up"
           style={{ animationDelay: "400ms" }}
         >
-          {TRUST_BADGES.map((badge) => (
+          {TRUST_BADGES.map(({ Icon, label }) => (
             <li
-              key={badge.label}
+              key={label}
               className="glass inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium text-cream/85"
             >
-              <span aria-hidden="true">{badge.icon}</span>
-              {badge.label}
+              <Icon className="h-3.5 w-3.5 shrink-0 text-gold-light" aria-hidden="true" />
+              {label}
             </li>
           ))}
         </ul>

@@ -11,7 +11,7 @@ export default function DestinationCard({ destination }) {
 
   return (
     <div className="glass-card glass-light group flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-square overflow-hidden">
         <img
           src={`/images/${image.src}`}
           alt={image.alt}

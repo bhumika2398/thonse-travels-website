@@ -21,7 +21,7 @@ export default {
         ink: "#2b2f28", // body text
       },
       fontFamily: {
-        display: ["'Fraunces'", "'Cormorant Garamond'", "serif"],
+        display: ["'Fraunces'", "ui-serif", "serif"],
         sans: ["'Inter'", "system-ui", "sans-serif"],
       },
       fontSize: {

@@ -22,9 +22,9 @@ export const destinations = [
   {
     slug: "kaup-lighthouse",
     name: "Kaup Lighthouse",
-    image: { src: "udupi-sunset.jpg", alt: "Kaup Lighthouse Udupi sunset view" },
+    image: { src: "gallery-pier-sunset.jpg", alt: "Kaup black-and-white lighthouse at sunset, Udupi" },
     description: "Climb the black-and-white lighthouse for a sweeping coastal sunset view.",
-    secondaryImages: [{ src: "gallery-pier-sunset.jpg", alt: "Pier sunset on the Udupi coast" }],
+    secondaryImages: [{ src: "udupi-sunset.jpg", alt: "Udupi coastal sunset" }],
   },
   {
     slug: "thonse-mangrove-kayaking",
