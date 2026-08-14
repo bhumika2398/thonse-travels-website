@@ -18,7 +18,7 @@ export const fleetSeedData = [
     tagline2: "Swift Dzire",
     seats: 5,
     passengerCapacity: "4 passengers + driver",
-    image: "swift-dezire.png",
+    image: "swift-dezire.jpg",
     tagline:
       "Perfect for solo travelers, couples, quick airport drops, and nimble city navigation through Udupi's bustling streets.",
     highlights: [
@@ -35,7 +35,7 @@ export const fleetSeedData = [
     tagline2: "Ertiga",
     seats: 7,
     passengerCapacity: "6 passengers + driver",
-    image: "ertiga.png",
+    image: "ertiga.jpg",
     tagline:
       "Designed for family road trips, beach excursions, and temple pilgrimages. Flexible three-row seating with ample luggage capacity.",
     highlights: [

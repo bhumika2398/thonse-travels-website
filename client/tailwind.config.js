@@ -16,9 +16,9 @@ export default {
           soft: "#1f3e38", // lifted emerald — slightly lighter shade for layered dark panels
         },
         gold: {
-          DEFAULT: "#c6a87c", // soft brass — buttons/accents/borders only
-          light: "#e2cba6", // pale brass — hover states/highlights
-          dark: "#9e8663", // deeper brass for text-on-light contrast
+          DEFAULT: "#7e7667", // neutral warm taupe/greige — buttons/accents/borders only
+          light: "#a39a8a", // lighter taupe — hover states/highlights
+          dark: "#655e52", // deeper taupe for text-on-light contrast
         },
         ink: "#1c1c1c", // near-black — body text
       },
@@ -30,12 +30,12 @@ export default {
         base: ["1.0625rem", { lineHeight: "1.7" }], // ~17px body copy
       },
       backgroundImage: {
-        "gold-gradient": "linear-gradient(135deg, #e2cba6 0%, #c6a87c 55%, #9e8663 100%)",
+        "gold-gradient": "linear-gradient(135deg, #a39a8a 0%, #7e7667 55%, #655e52 100%)",
       },
       boxShadow: {
         glass: "0 8px 32px 0 rgba(15, 46, 40, 0.25)",
         "glass-lg": "0 20px 60px -10px rgba(15, 46, 40, 0.45)",
-        "gold-glow": "0 0 0 1px rgba(198, 168, 124, 0.35), 0 8px 30px -8px rgba(198, 168, 124, 0.5)",
+        "gold-glow": "0 0 0 1px rgba(126, 118, 103, 0.35), 0 8px 30px -8px rgba(126, 118, 103, 0.5)",
       },
       keyframes: {
         "fade-slide-up": {

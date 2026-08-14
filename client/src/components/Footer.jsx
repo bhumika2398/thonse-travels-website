@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
 import { navLinks, siteInfo } from "../data/siteInfo.js";
 import Logo from "./Logo.jsx";
 
-export default function Footer() {
+function Footer() {
   return (
     <footer className="bg-charcoal text-cream/80 border-t border-gold/20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 grid gap-12 md:grid-cols-4">
@@ -71,3 +72,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default memo(Footer);

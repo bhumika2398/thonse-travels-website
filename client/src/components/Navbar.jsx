@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { navLinks, siteInfo } from "../data/siteInfo.js";
 import Logo from "./Logo.jsx";
 
-export default function Navbar() {
+// App re-renders on every route change (it reads useLocation() for the
+// page-transition key), which would otherwise cascade into re-rendering
+// Navbar/Footer/FloatingButtons too even though none of them take props —
+// memo() skips that re-render since there's nothing for it to respond to.
+function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -60,7 +64,10 @@ export default function Navbar() {
           <a href={siteInfo.callLink} className="font-sans text-sm text-cream/85 hover:text-gold transition-colors">
             {siteInfo.phoneDisplay}
           </a>
-          <NavLink to="/contact" className="btn-gold !px-6 !py-2.5 text-sm">
+          <NavLink
+            to="/contact"
+            className="btn-gold !px-6 !py-2.5 text-sm !bg-[linear-gradient(135deg,#ddccae_0%,#ece3d3_100%)]"
+          >
             Book a Ride
           </NavLink>
         </div>
@@ -95,7 +102,11 @@ export default function Navbar() {
           <a href={siteInfo.callLink} className="font-sans text-base text-gold">
             Call {siteInfo.phoneDisplay}
           </a>
-          <NavLink to="/contact" onClick={() => setOpen(false)} className="btn-gold justify-center">
+          <NavLink
+            to="/contact"
+            onClick={() => setOpen(false)}
+            className="btn-gold justify-center !bg-[linear-gradient(135deg,#ddccae_0%,#ece3d3_100%)]"
+          >
             Book a Ride
           </NavLink>
         </div>
@@ -103,3 +114,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+export default memo(Navbar);

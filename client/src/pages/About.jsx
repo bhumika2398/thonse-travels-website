@@ -23,7 +23,7 @@ export default function About() {
         eyebrow="Our Story"
         title="Rooted in Udupi, Built on Trust"
         subtitle="A local operation, run by a local family, for travelers who want the coast shown to them properly."
-        image="udupi-beach1.png"
+        image="udupi-beach1.jpg"
         imageAlt="Udupi coastline"
       />
 

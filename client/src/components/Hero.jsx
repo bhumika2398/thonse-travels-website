@@ -5,7 +5,14 @@ import { siteInfo } from "../data/siteInfo.js";
 import SearchStrip from "./SearchStrip.jsx";
 
 // Cycle order: float-2 plays first, then float-1, then float-3, then loops.
-const VIDEO_ORDER = ["/videos/float-2.mp4", "/videos/float-1.mp4", "/videos/float-3.mp4"];
+// Each clip pairs with its own poster frame so a layer always has an
+// instant visual the moment it becomes front, instead of a blank/black
+// wait while the video buffers.
+const VIDEO_ORDER = [
+  { src: "/videos/float-2.mp4", poster: "/videos/float-2-poster.jpg" },
+  { src: "/videos/float-1.mp4", poster: "/videos/float-1-poster.jpg" },
+  { src: "/videos/float-3.mp4", poster: "/videos/float-3-poster.jpg" },
+];
 
 const TRUST_BADGES = [
   { Icon: CreditCard, label: "No Hidden Charges" },
@@ -34,13 +41,16 @@ function CyclingVideoBackground() {
       {[0, 1].map((layer) => {
         const isFront = layer === index % 2;
         const clipIndex = isFront ? index : (index + 1) % VIDEO_ORDER.length;
+        const clip = VIDEO_ORDER[clipIndex];
         return (
           <video
             key={layer}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[600ms] ease-in-out ${
               isFront ? "z-10 opacity-100" : "z-0 opacity-0"
             }`}
-            src={VIDEO_ORDER[clipIndex]}
+            src={clip.src}
+            poster={clip.poster}
+            preload="auto"
             autoPlay
             muted
             playsInline

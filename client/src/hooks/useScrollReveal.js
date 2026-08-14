@@ -24,7 +24,12 @@ export default function useScrollReveal(options = {}) {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [options]);
+    // Intentionally run once on mount only: `options` is a fresh {} literal
+    // on every render by default (no call site ever passes a real one), so
+    // depending on it would tear down and recreate the IntersectionObserver
+    // on every re-render instead of once per element.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return ref;
 }

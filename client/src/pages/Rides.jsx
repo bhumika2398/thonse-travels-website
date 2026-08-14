@@ -35,7 +35,7 @@ export default function Rides() {
         eyebrow="Our Fleet"
         title="Swift Dzire, Ertiga & Airport Transfers"
         subtitle="Every vehicle is inspected, sanitized, and driven by a professional driver from Mukthar Ahmed's verified local team — so every ride feels as good as it looks."
-        image="ertiga.png"
+        image="ertiga.jpg"
         imageAlt="Ertiga rental car Udupi"
       />
 

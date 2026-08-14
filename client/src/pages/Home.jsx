@@ -127,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gold-gradient py-20">
+      <section className="py-20 bg-[linear-gradient(135deg,#ddccae_0%,#ece3d3_100%)]">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-5 text-center sm:px-8">
           <h2 className="font-display text-3xl font-semibold text-charcoal sm:text-4xl">
             Ready to hit the coast?

@@ -5,7 +5,8 @@ export default function PageHeader({ eyebrow, title, subtitle, image, imageAlt =
         <img
           src={`/images/${image}`}
           alt={imageAlt}
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/30" />
