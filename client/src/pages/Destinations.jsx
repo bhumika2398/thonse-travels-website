@@ -7,7 +7,7 @@ import { destinations } from "../data/destinations.js";
 export default function Destinations() {
   useDocumentMeta(
     "Udupi Destinations | Beaches, Backwaters & Temples — Thonse Tours and Travels",
-    "Explore Udupi's best destinations with Thonse Tours and Travels: St. Mary's Island, Malpe Beach, Kaup Lighthouse, Sri Krishna Matha, Murdeshwar, and Padubidri Beach — all with a professional driver."
+    "Explore Udupi's best destinations with Thonse Tours and Travels: St. Mary's Island, Malpe Beach, Kaup Lighthouse, Sri Krishna Matha, Murdeshwar, Padubidri Beach, Mysore Palace, Chamundeshwari Temple, and Ranganathittu Bird Sanctuary — all with a professional driver."
   );
 
   return (

@@ -3,7 +3,7 @@ export const siteInfo = {
   owner: "Mukthar Ahmed",
   phone: "8880954175",
   phoneDisplay: "+91 88809 54175",
-  email: "info@thonsetours.com",
+  email: "tmmukthar24@gmail.com",
   address: "Thonse, Udupi, Karnataka 576101",
   whatsappLink:
     "https://wa.me/918880954175?text=" +

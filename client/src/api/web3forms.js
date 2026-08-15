@@ -1,6 +1,6 @@
-// Shared submission helper for Web3Forms (https://web3forms.com).
-// Both BookingForm and ContactForm POST their data here as JSON instead of
-// hitting the old /api/bookings and /api/contact Express endpoints.
+// Submission helper for Web3Forms (https://web3forms.com).
+// BookingForm POSTs its data here as JSON instead of hitting the old
+// /api/bookings Express endpoint.
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 export const WEB3FORMS_ACCESS_KEY = "58213d3d-7333-4f3f-bb55-50377c45d9c1";

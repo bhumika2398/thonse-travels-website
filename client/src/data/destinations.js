@@ -43,4 +43,22 @@ export const destinations = [
     image: { src: "padubidri-beach.jpg", alt: "Padubidri Beach, Udupi" },
     description: "A quieter stretch of coast, ideal for a relaxed evening by the water.",
   },
+  {
+    slug: "mysore-palace",
+    name: "Mysore Palace",
+    image: { src: "mysore-palace.jpg", alt: "Mysore Palace illuminated facade" },
+    description: "A grand Indo-Saracenic royal palace, one of India's most visited monuments.",
+  },
+  {
+    slug: "chamundeshwari-temple",
+    name: "Chamundeshwari Temple",
+    image: { src: "chamundeshwari-temple.jpg", alt: "Chamundeshwari Temple atop Chamundi Hill, Mysore" },
+    description: "A historic hilltop temple overlooking Mysore, dedicated to goddess Chamundeshwari.",
+  },
+  {
+    slug: "ranganathittu-bird-sanctuary",
+    name: "Ranganathittu Bird Sanctuary",
+    image: { src: "bird-sanctuary.png", alt: "Ranganathittu Bird Sanctuary river islets near Mysore" },
+    description: "A riverine bird sanctuary on the Kaveri, home to storks, pelicans, and migratory birds.",
+  },
 ];

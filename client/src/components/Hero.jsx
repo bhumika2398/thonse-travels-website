@@ -4,14 +4,23 @@ import { CreditCard, Sparkles, ShieldCheck, Clock, MapPin } from "lucide-react";
 import { siteInfo } from "../data/siteInfo.js";
 import SearchStrip from "./SearchStrip.jsx";
 
+// Cache-busting version for the video files themselves: filenames never
+// change when a clip is re-edited/replaced in place, and unhashed files
+// under public/ aren't guaranteed a cache-busting filename by the host
+// (no vercel.json override exists), so a stale copy could otherwise keep
+// being served from a browser or CDN cache after the file is swapped.
+// Bump this whenever a video file's *content* changes without its name
+// changing (e.g. float-2.mp4 re-edited to remove its end-card overlay).
+const VIDEO_ASSET_VERSION = "2";
+
 // Cycle order: float-2 plays first, then float-1, then float-3, then loops.
 // Each clip pairs with its own poster frame so a layer always has an
 // instant visual the moment it becomes front, instead of a blank/black
 // wait while the video buffers.
 const VIDEO_ORDER = [
-  { src: "/videos/float-2.mp4", poster: "/videos/float-2-poster.jpg" },
-  { src: "/videos/float-1.mp4", poster: "/videos/float-1-poster.jpg" },
-  { src: "/videos/float-3.mp4", poster: "/videos/float-3-poster.jpg" },
+  { src: `/videos/float-2.mp4?v=${VIDEO_ASSET_VERSION}`, poster: "/videos/float-2-poster.jpg" },
+  { src: `/videos/float-1.mp4?v=${VIDEO_ASSET_VERSION}`, poster: "/videos/float-1-poster.jpg" },
+  { src: `/videos/float-3.mp4?v=${VIDEO_ASSET_VERSION}`, poster: "/videos/float-3-poster.jpg" },
 ];
 
 const TRUST_BADGES = [
