@@ -41,17 +41,19 @@ function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 py-3.5">
         <NavLink to="/" onClick={() => setOpen(false)} aria-label="Thonse Tours and Travels home">
-          <Logo showIcon={false} />
+          <Logo showIcon={false} captionClassName="text-gold-light" />
         </NavLink>
 
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-12">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `font-sans text-sm font-medium tracking-wide transition-colors duration-200 ${
-                  isActive ? "text-gold" : "text-cream/85 hover:text-gold"
+                `border-b-2 pb-1 font-sans text-sm font-medium tracking-wide transition-colors duration-200 ${
+                  isActive
+                    ? "border-gold-light text-gold-light"
+                    : "border-transparent text-cream/85 hover:text-gold"
                 }`
               }
             >
@@ -93,7 +95,7 @@ function Navbar() {
               to={link.to}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `font-sans text-base font-medium ${isActive ? "text-gold" : "text-cream/85"}`
+                `font-sans text-base font-medium ${isActive ? "text-gold-light" : "text-cream/85"}`
               }
             >
               {link.label}

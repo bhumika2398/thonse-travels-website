@@ -6,7 +6,7 @@
  * `showIcon` defaults to true (Footer keeps the full mark); Navbar passes
  * `showIcon={false}` to render the wordmark only, per founder feedback.
  */
-export default function Logo({ light = true, className = "", showIcon = true }) {
+export default function Logo({ light = true, className = "", showIcon = true, captionClassName = "text-gold" }) {
   const textColor = light ? "text-cream" : "text-ink";
 
   return (
@@ -44,7 +44,7 @@ export default function Logo({ light = true, className = "", showIcon = true }) 
         <span className={`block font-display text-xl sm:text-2xl font-semibold tracking-tight ${textColor}`}>
           Thonse
         </span>
-        <span className="block text-[9px] sm:text-[10px] font-sans font-semibold uppercase tracking-[0.35em] text-gold">
+        <span className={`block text-[9px] sm:text-[10px] font-sans font-semibold uppercase tracking-[0.35em] ${captionClassName}`}>
           Tours &amp; Travels
         </span>
       </div>
