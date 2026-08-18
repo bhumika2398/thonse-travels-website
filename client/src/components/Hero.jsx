@@ -13,7 +13,7 @@ import SearchStrip from "./SearchStrip.jsx";
 // changing (e.g. float-2.mp4 re-edited to remove its end-card overlay).
 const VIDEO_ASSET_VERSION = "3";
 
-// Cycle order: float-2 plays first, then float-1, then float-3, then loops.
+// Cycle order: float-2 plays first, then float-1, then loops back to float-2.
 // Each clip pairs with its own poster frame so a layer always has an
 // instant visual the moment it becomes front, instead of a blank/black
 // wait while the video buffers. `mobileSrc` is a separately-compressed,
@@ -21,6 +21,15 @@ const VIDEO_ASSET_VERSION = "3";
 // desktop 1080x1920) served instead on screens under 768px, since the
 // full-size files are still multiple MB each — too heavy for constrained
 // mobile data connections.
+//
+// float-3 was intentionally dropped from this cycle: float-3.mp4,
+// float-3-mobile.mp4, and float-3-poster.jpg were all deleted from
+// public/videos/ (not by this component), so that slot's <video src> was
+// 404ing. A video that never successfully loads never fires `ended`, so
+// the cycle would advance to that slot and then stall there permanently —
+// this is what showed up as "the hero goes blank instead of looping" (the
+// cycling/modulo logic itself was never broken). Re-add a third entry here
+// once a real replacement file exists at some filename in public/videos/.
 const VIDEO_ORDER = [
   {
     src: `/videos/float-2.mp4?v=${VIDEO_ASSET_VERSION}`,
@@ -31,11 +40,6 @@ const VIDEO_ORDER = [
     src: `/videos/float-1.mp4?v=${VIDEO_ASSET_VERSION}`,
     mobileSrc: `/videos/float-1-mobile.mp4?v=${VIDEO_ASSET_VERSION}`,
     poster: "/videos/float-1-poster.jpg",
-  },
-  {
-    src: `/videos/float-3.mp4?v=${VIDEO_ASSET_VERSION}`,
-    mobileSrc: `/videos/float-3-mobile.mp4?v=${VIDEO_ASSET_VERSION}`,
-    poster: "/videos/float-3-poster.jpg",
   },
 ];
 

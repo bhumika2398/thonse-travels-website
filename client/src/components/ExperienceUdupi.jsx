@@ -8,7 +8,7 @@ const CLIPS = [
     floatDelay: "0s",
   },
   {
-    src: "/videos/float-3.mp4",
+    src: "/videos/float-1.mp4",
     caption: "Backwaters & Coastal Drives",
     floatDuration: "8.5s",
     floatDelay: "0.6s",

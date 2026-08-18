@@ -32,8 +32,8 @@ export default function About() {
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl shadow-glass-lg">
               <img
-                src="/images/gallery-krishna-matha-day.jpg"
-                alt="Sri Krishna Matha temple Udupi by day"
+                src="/images/udupi-beach2.jpg"
+                alt="Udupi coastline"
                 loading="lazy"
                 className="h-[28rem] w-full object-cover"
               />
