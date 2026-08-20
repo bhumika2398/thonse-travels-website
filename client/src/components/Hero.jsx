@@ -11,25 +11,23 @@ import SearchStrip from "./SearchStrip.jsx";
 // being served from a browser or CDN cache after the file is swapped.
 // Bump this whenever a video file's *content* changes without its name
 // changing (e.g. float-2.mp4 re-edited to remove its end-card overlay).
-const VIDEO_ASSET_VERSION = "3";
+const VIDEO_ASSET_VERSION = "4";
 
-// Cycle order: float-2 plays first, then float-1, then loops back to float-2.
-// Each clip pairs with its own poster frame so a layer always has an
-// instant visual the moment it becomes front, instead of a blank/black
-// wait while the video buffers. `mobileSrc` is a separately-compressed,
-// lower-resolution/lower-bitrate encode of the same clip (720x1280 vs the
-// desktop 1080x1920) served instead on screens under 768px, since the
-// full-size files are still multiple MB each — too heavy for constrained
-// mobile data connections.
+// Cycle order: float-2 plays first, then float-1, then float-3, then loops
+// back to float-2 — continuing indefinitely. Each clip pairs with its own
+// poster frame so a layer always has an instant visual the moment it
+// becomes front, instead of a blank/black wait while the video buffers.
+// `mobileSrc` is a separately-compressed, lower-resolution/lower-bitrate
+// encode of the same clip (720x1280 vs the desktop 1080x1920) served
+// instead on screens under 768px, since the full-size files are still
+// multiple MB each — too heavy for constrained mobile data connections.
 //
-// float-3 was intentionally dropped from this cycle: float-3.mp4,
-// float-3-mobile.mp4, and float-3-poster.jpg were all deleted from
-// public/videos/ (not by this component), so that slot's <video src> was
-// 404ing. A video that never successfully loads never fires `ended`, so
-// the cycle would advance to that slot and then stall there permanently —
-// this is what showed up as "the hero goes blank instead of looping" (the
-// cycling/modulo logic itself was never broken). Re-add a third entry here
-// once a real replacement file exists at some filename in public/videos/.
+// float-3 has no separate mobile-optimized encode yet, so it falls back to
+// the same full-size file on mobile too (still fine functionally — just
+// not bandwidth-optimized like the other two clips). The `handleEnded`
+// advance is `(i + 1) % VIDEO_ORDER.length`, so as long as every entry here
+// resolves to a real file that actually fires the `ended` event, the cycle
+// wraps continuously and never stalls/goes blank.
 const VIDEO_ORDER = [
   {
     src: `/videos/float-2.mp4?v=${VIDEO_ASSET_VERSION}`,
@@ -40,6 +38,11 @@ const VIDEO_ORDER = [
     src: `/videos/float-1.mp4?v=${VIDEO_ASSET_VERSION}`,
     mobileSrc: `/videos/float-1-mobile.mp4?v=${VIDEO_ASSET_VERSION}`,
     poster: "/videos/float-1-poster.jpg",
+  },
+  {
+    src: `/videos/float-3.mp4?v=${VIDEO_ASSET_VERSION}`,
+    mobileSrc: `/videos/float-3.mp4?v=${VIDEO_ASSET_VERSION}`,
+    poster: "/videos/float-3-poster.jpg",
   },
 ];
 

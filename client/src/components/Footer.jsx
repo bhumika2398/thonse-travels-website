@@ -65,9 +65,22 @@ function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-gold/10 py-6 text-center text-xs text-cream/40">
-        © {new Date().getFullYear()} Thonse Tours and Travels. All rights reserved. Owned &amp;
-        operated by {siteInfo.owner}.
+      <div className="border-t border-gold/10 py-6 text-center text-sm text-cream/40 space-y-1">
+        <p>
+          © {new Date().getFullYear()} Thonse Tours and Travels. All rights reserved. Owned &amp;
+          operated by {siteInfo.owner}.
+        </p>
+        <p>
+          Designed and Developed by{" "}
+          <a
+            href="https://naazailabs.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-base font-semibold text-gold-light hover:text-gold transition-colors"
+          >
+            Naaz AI Labs
+          </a>
+        </p>
       </div>
     </footer>
   );

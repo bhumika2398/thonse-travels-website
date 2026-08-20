@@ -2,14 +2,14 @@ import Reveal from "./Reveal.jsx";
 
 const CLIPS = [
   {
-    src: "/videos/float-2.mp4",
-    caption: "Sunset Along the Malpe Coast",
+    src: "/videos/float-4.mp4",
+    caption: "Hanging Bridge, Udupi",
     floatDuration: "7s",
     floatDelay: "0s",
   },
   {
-    src: "/videos/float-1.mp4",
-    caption: "Backwaters & Coastal Drives",
+    src: "/videos/float-5.mp4",
+    caption: "Delta Point",
     floatDuration: "8.5s",
     floatDelay: "0.6s",
   },
