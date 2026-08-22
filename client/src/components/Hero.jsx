@@ -143,51 +143,57 @@ function CyclingVideoBackground() {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-end overflow-hidden bg-charcoal">
-      <div className="absolute inset-0">
-        <CyclingVideoBackground />
-        {/* Subtle bottom-to-top gradient — enough for text contrast, not heavy */}
-        <div className="absolute inset-0 z-20 bg-gradient-to-t from-charcoal/85 via-charcoal/30 to-charcoal/10" />
-      </div>
-
-      <div className="relative z-30 mx-auto w-full max-w-7xl px-5 pb-20 pt-40 sm:px-8 sm:pb-28">
-        <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-cream sm:text-6xl md:text-7xl animate-fade-slide-up">
-          Coastal journeys, driven with quiet care.
-        </h1>
-
-        {/* One short line, not a paragraph — the Hero's job is a strong
-            first impression + one clear action, not a full pitch. Deeper
-            credibility detail (fleet, drivers, pricing, support) lives in
-            the Why Thonse section below, not stacked here too. */}
-        <p
-          className="mt-5 max-w-md text-base text-cream/75 sm:text-lg animate-fade-slide-up"
-          style={{ animationDelay: "120ms" }}
-        >
-          Premium rides across the Udupi coast, driven with care.
-        </p>
-
-        {/* Book Now is the one primary action; Call is a lighter-weight
-            secondary option beside it, not a second equal-weight button. */}
-        <div
-          className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-3 animate-fade-slide-up"
-          style={{ animationDelay: "240ms" }}
-        >
-          <Link to="/contact" className="btn-gold">
-            Book Now
-          </Link>
-          <a href={siteInfo.callLink} className="btn-outline gap-2">
-            <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
-            Call {siteInfo.phoneDisplay}
-          </a>
+    <>
+      {/* Video section carries text only — heading + one-line subtext.
+          Book Now/Call and the search strip used to sit on top of the
+          video too; they now live in the panel below so the video reads
+          as a clean, uncluttered visual instead of a landing pad for
+          buttons and a form. */}
+      <section className="relative flex min-h-screen items-end overflow-hidden bg-charcoal">
+        <div className="absolute inset-0">
+          <CyclingVideoBackground />
+          {/* Subtle bottom-to-top gradient — enough for text contrast, not heavy */}
+          <div className="absolute inset-0 z-20 bg-gradient-to-t from-charcoal/85 via-charcoal/30 to-charcoal/10" />
         </div>
 
-        <div
-          className="mx-auto mt-12 max-w-[900px] animate-fade-slide-up sm:mt-16"
-          style={{ animationDelay: "360ms" }}
-        >
-          <SearchStrip />
+        <div className="relative z-30 mx-auto w-full max-w-7xl px-5 pb-16 pt-40 sm:px-8 sm:pb-20">
+          <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-cream sm:text-6xl md:text-7xl animate-fade-slide-up">
+            Coastal journeys, driven with quiet care.
+          </h1>
+
+          {/* One short line, not a paragraph — the Hero's job is a strong
+              first impression, not a full pitch. Deeper credibility detail
+              (fleet, drivers, pricing, support) lives in the Why Thonse
+              section further down, not stacked here too. */}
+          <p
+            className="mt-5 max-w-md text-base text-cream/75 sm:text-lg animate-fade-slide-up"
+            style={{ animationDelay: "120ms" }}
+          >
+            Premium rides across the Udupi coast, driven with care.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Action panel, below the video — Book Now (primary), Call
+          (secondary), and the search strip all live here now instead of
+          overlaying the hero video. */}
+      <section className="bg-charcoal px-5 py-10 sm:px-8 sm:py-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
+            <Link to="/contact" className="btn-gold">
+              Book Now
+            </Link>
+            <a href={siteInfo.callLink} className="btn-outline gap-2">
+              <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Call {siteInfo.phoneDisplay}
+            </a>
+          </div>
+
+          <div className="mx-auto w-full max-w-[900px]">
+            <SearchStrip />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
