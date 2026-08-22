@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { CreditCard, Sparkles, ShieldCheck, Clock, MapPin } from "lucide-react";
+import { Phone } from "lucide-react";
 import { siteInfo } from "../data/siteInfo.js";
 import SearchStrip from "./SearchStrip.jsx";
 
@@ -62,14 +62,6 @@ function useIsMobile() {
 
   return isMobile;
 }
-
-const TRUST_BADGES = [
-  { Icon: CreditCard, label: "No Hidden Charges" },
-  { Icon: Sparkles, label: "Sanitised, Serviced Fleet" },
-  { Icon: ShieldCheck, label: "Verified & Licensed Drivers" },
-  { Icon: Clock, label: "24×7 Support" },
-  { Icon: MapPin, label: "Live GPS Tracking" },
-];
 
 /**
  * Two persistent <video> layers crossfade between clips. The layer whose
@@ -158,64 +150,40 @@ export default function Hero() {
         <div className="absolute inset-0 z-20 bg-gradient-to-t from-charcoal/85 via-charcoal/30 to-charcoal/10" />
       </div>
 
-      <div className="relative z-30 mx-auto w-full max-w-7xl px-5 pb-20 pt-40 sm:px-8 sm:pb-24">
+      <div className="relative z-30 mx-auto w-full max-w-7xl px-5 pb-20 pt-40 sm:px-8 sm:pb-28">
         <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-cream sm:text-6xl md:text-7xl animate-fade-slide-up">
           Coastal journeys, driven with quiet care.
         </h1>
-        {/* Shorter, single-sentence version on mobile — the full paragraph
-            reads fine on desktop but felt like too much text on a small
-            screen; sm: and up swap back to the full copy. */}
+
+        {/* One short line, not a paragraph — the Hero's job is a strong
+            first impression + one clear action, not a full pitch. Deeper
+            credibility detail (fleet, drivers, pricing, support) lives in
+            the Why Thonse section below, not stacked here too. */}
         <p
-          className="mt-6 max-w-xl text-base leading-relaxed text-cream/75 sm:hidden animate-fade-slide-up"
+          className="mt-5 max-w-md text-base text-cream/75 sm:text-lg animate-fade-slide-up"
           style={{ animationDelay: "120ms" }}
         >
-          A Swift Dzire &amp; spacious Ertiga, each with a professional driver — for beach days,
-          temple runs, and more.
-        </p>
-        <p
-          className="mt-6 hidden max-w-xl text-base leading-relaxed text-cream/75 sm:block sm:text-lg animate-fade-slide-up"
-          style={{ animationDelay: "120ms" }}
-        >
-          A Swift Dzire and a spacious Ertiga, both with a professional driver from{" "}
-          {siteInfo.owner}'s verified local team — for beach days, temple runs, and everything in
-          between.
+          Premium rides across the Udupi coast, driven with care.
         </p>
 
+        {/* Book Now is the one primary action; Call is a lighter-weight
+            secondary option beside it, not a second equal-weight button. */}
         <div
-          className="mt-8 flex flex-wrap items-center gap-4 animate-fade-slide-up"
+          className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-3 animate-fade-slide-up"
           style={{ animationDelay: "240ms" }}
         >
           <Link to="/contact" className="btn-gold">
             Book Now
           </Link>
-          <a href={siteInfo.callLink} className="btn-outline">
+          <a href={siteInfo.callLink} className="btn-outline gap-2">
+            <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
             Call {siteInfo.phoneDisplay}
           </a>
         </div>
 
-        {/* Grid on mobile so every badge lines up in even, predictable
-            columns regardless of label length — plain flex-wrap let short
-            and long labels pack unevenly (e.g. one alone on a row, two on
-            the next) which read as cluttered on narrow screens. sm: and up
-            switch back to the flowing flex-wrap row. */}
-        <ul
-          className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-2.5 animate-fade-slide-up"
-          style={{ animationDelay: "320ms" }}
-        >
-          {TRUST_BADGES.map(({ Icon, label }) => (
-            <li
-              key={label}
-              className="glass flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium leading-tight text-cream/85 sm:inline-flex sm:items-center sm:px-3.5 sm:text-xs"
-            >
-              <Icon className="h-3.5 w-3.5 shrink-0 text-gold-light" aria-hidden="true" />
-              <span>{label}</span>
-            </li>
-          ))}
-        </ul>
-
         <div
-          className="mx-auto mt-10 max-w-[900px] animate-fade-slide-up"
-          style={{ animationDelay: "400ms" }}
+          className="mx-auto mt-12 max-w-[900px] animate-fade-slide-up sm:mt-16"
+          style={{ animationDelay: "360ms" }}
         >
           <SearchStrip />
         </div>
