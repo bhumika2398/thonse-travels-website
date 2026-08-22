@@ -1,12 +1,12 @@
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import StarRating from "./StarRating.jsx";
-import Reveal from "./Reveal.jsx";
 
 function ReviewCard({ review }) {
   return (
-    <blockquote className="glass-card glass-light h-full p-7">
+    <blockquote className="glass-card glass-light mx-auto max-w-2xl p-7 sm:p-9">
       <StarRating rating={review.rating} />
-      <p className="mt-4 font-display text-base italic leading-relaxed text-ink/90">
+      <p className="mt-4 font-display text-base italic leading-relaxed text-ink/90 sm:text-lg">
         “{review.quote}”
       </p>
       <footer className="mt-5 flex items-center gap-3 border-t border-gold/20 pt-4">
@@ -22,57 +22,74 @@ function ReviewCard({ review }) {
   );
 }
 
+const ARROW_BTN_CLASS =
+  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold-dark/30 text-ink transition-colors duration-200 hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50";
+
 /**
- * Shows the first 3 reviews; "View More Reviews" reveals the rest with a
- * fade/slide-down transition via a CSS grid-template-rows trick (no JS
- * height measuring needed), then the button becomes "Show Less".
+ * Nav-pane style carousel — one review shown at a time with prev/next
+ * arrows and dot indicators to jump directly to any review, replacing the
+ * old stacked-grid + "View More" toggle. Every review stays reachable
+ * without the page growing taller as reviews are added, and there's no
+ * long vertical stack of cards for the floating WhatsApp/Call buttons to
+ * visually collide with on mobile.
  */
 export default function ReviewsSection({ reviews }) {
-  const [showAll, setShowAll] = useState(false);
-  const primary = reviews.slice(0, 3);
-  const extra = reviews.slice(3);
+  const [index, setIndex] = useState(0);
+
+  const goTo = (i) => setIndex((i + reviews.length) % reviews.length);
+  const prev = () => goTo(index - 1);
+  const next = () => goTo(index + 1);
 
   return (
-    <div>
-      <div className="grid gap-6 sm:grid-cols-3">
-        {primary.map((review, i) => (
-          <Reveal key={review.name} delay={i * 100}>
-            <ReviewCard review={review} />
-          </Reveal>
-        ))}
+    <div className="mx-auto max-w-3xl">
+      <div className="flex items-center gap-4 sm:gap-6">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous review"
+          className={`hidden sm:flex ${ARROW_BTN_CLASS}`}
+        >
+          <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+        </button>
+
+        <div key={index} className="min-w-0 flex-1 animate-fade-slide-up">
+          <ReviewCard review={reviews[index]} />
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next review"
+          className={`hidden sm:flex ${ARROW_BTN_CLASS}`}
+        >
+          <ChevronRight className="h-5 w-5" aria-hidden="true" />
+        </button>
       </div>
 
-      {extra.length > 0 && (
-        <div
-          className={`grid transition-[grid-template-rows] duration-700 ease-out ${
-            showAll ? "mt-6 grid-rows-[1fr]" : "grid-rows-[0fr]"
-          }`}
-        >
-          <div className="overflow-hidden">
-            <div
-              className={`grid gap-6 sm:grid-cols-3 transition-opacity duration-500 ${
-                showAll ? "opacity-100 delay-200" : "opacity-0"
-              }`}
-            >
-              {extra.map((review) => (
-                <ReviewCard key={review.name} review={review} />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Arrows move below the card on mobile instead of squeezing it narrower */}
+      <div className="mt-6 flex items-center justify-center gap-6 sm:hidden">
+        <button type="button" onClick={prev} aria-label="Previous review" className={ARROW_BTN_CLASS}>
+          <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+        </button>
+        <button type="button" onClick={next} aria-label="Next review" className={ARROW_BTN_CLASS}>
+          <ChevronRight className="h-5 w-5" aria-hidden="true" />
+        </button>
+      </div>
 
-      {extra.length > 0 && (
-        <div className="mt-10 flex justify-center">
+      <div className="mt-6 flex justify-center gap-2">
+        {reviews.map((review, i) => (
           <button
+            key={review.name}
             type="button"
-            onClick={() => setShowAll((v) => !v)}
-            className="btn-outline !text-ink !border-gold-dark/50 hover:!bg-gold/10"
-          >
-            {showAll ? "Show Less" : "View More Reviews"}
-          </button>
-        </div>
-      )}
+            onClick={() => goTo(i)}
+            aria-label={`Go to review ${i + 1} of ${reviews.length}`}
+            aria-current={i === index}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === index ? "w-6 bg-gold-dark" : "w-2 bg-gold-dark/30 hover:bg-gold-dark/50"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchFleet } from "../api/client.js";
 import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from "../api/web3forms.js";
+import { logBookingToSheet } from "../api/googleSheets.js";
 import { airportService } from "../data/services.js";
 
 const BOOKING_SUBJECT = "New Booking Request - Thonse Tours and Travels";
@@ -67,6 +68,7 @@ export default function BookingForm() {
         ...form,
       });
       setStatus({ state: "success", message: res.message || "Booking received!" });
+      logBookingToSheet(form); // fire-and-forget; never blocks the success state above
       setForm(initialState);
     } catch (err) {
       setStatus({
