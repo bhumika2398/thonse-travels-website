@@ -162,8 +162,18 @@ export default function Hero() {
         <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-cream sm:text-6xl md:text-7xl animate-fade-slide-up">
           Coastal journeys, driven with quiet care.
         </h1>
+        {/* Shorter, single-sentence version on mobile — the full paragraph
+            reads fine on desktop but felt like too much text on a small
+            screen; sm: and up swap back to the full copy. */}
         <p
-          className="mt-6 max-w-xl text-base leading-relaxed text-cream/75 sm:text-lg animate-fade-slide-up"
+          className="mt-6 max-w-xl text-base leading-relaxed text-cream/75 sm:hidden animate-fade-slide-up"
+          style={{ animationDelay: "120ms" }}
+        >
+          A Swift Dzire &amp; spacious Ertiga, each with a professional driver — for beach days,
+          temple runs, and more.
+        </p>
+        <p
+          className="mt-6 hidden max-w-xl text-base leading-relaxed text-cream/75 sm:block sm:text-lg animate-fade-slide-up"
           style={{ animationDelay: "120ms" }}
         >
           A Swift Dzire and a spacious Ertiga, both with a professional driver from{" "}
@@ -183,17 +193,22 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Grid on mobile so every badge lines up in even, predictable
+            columns regardless of label length — plain flex-wrap let short
+            and long labels pack unevenly (e.g. one alone on a row, two on
+            the next) which read as cluttered on narrow screens. sm: and up
+            switch back to the flowing flex-wrap row. */}
         <ul
-          className="mt-6 flex flex-wrap items-center gap-2.5 animate-fade-slide-up"
+          className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-2.5 animate-fade-slide-up"
           style={{ animationDelay: "320ms" }}
         >
           {TRUST_BADGES.map(({ Icon, label }) => (
             <li
               key={label}
-              className="glass inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium text-cream/85"
+              className="glass flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium leading-tight text-cream/85 sm:inline-flex sm:items-center sm:px-3.5 sm:text-xs"
             >
               <Icon className="h-3.5 w-3.5 shrink-0 text-gold-light" aria-hidden="true" />
-              {label}
+              <span>{label}</span>
             </li>
           ))}
         </ul>
