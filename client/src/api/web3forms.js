@@ -3,7 +3,7 @@
 // /api/bookings Express endpoint.
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
-export const WEB3FORMS_ACCESS_KEY = "58213d3d-7333-4f3f-bb55-50377c45d9c1";
+export const WEB3FORMS_ACCESS_KEY = "53e6742c-b394-4574-8006-e583471c22c4";
 
 /**
  * Submits a payload to Web3Forms as JSON.

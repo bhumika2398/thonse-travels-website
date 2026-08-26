@@ -1,6 +1,8 @@
 // Destinations is the site's main visual showcase (there is no separate
-// Gallery section/page) — six curated stops shown as a 3-column grid of
-// square cards (image + name + "Plan this trip" only, no description).
+// Gallery section/page) — curated stops shown as a 3-column grid of
+// square cards (image + name + "Plan this trip" only, no description —
+// DestinationCard.jsx never reads `description`, kept here only as
+// editorial context for whoever updates this list).
 export const destinations = [
   {
     slug: "st-marys-island",
@@ -23,21 +25,6 @@ export const destinations = [
     description: "Climb the black-and-white lighthouse for a sweeping coastal sunset view.",
   },
   {
-    slug: "sri-krishna-matha",
-    name: "Sri Krishna Matha",
-    image: { src: "gallery-krishna-matha-day.jpg", alt: "Sri Krishna Matha temple Udupi by day" },
-    description: "Udupi's historic temple complex and the heart of the old town food trail.",
-  },
-  {
-    slug: "murdeshwar",
-    name: "Murdeshwar",
-    image: {
-      src: "gallery-murdeshwar-evening.jpg",
-      alt: "Murdeshwar Shiva statue Udupi tour at evening",
-    },
-    description: "Home to one of the world's tallest Shiva statues, set directly against the sea.",
-  },
-  {
     slug: "padubidri-beach",
     name: "Padubidri Beach",
     image: { src: "padubidri-beach.jpg", alt: "Padubidri Beach, Udupi" },
@@ -50,15 +37,45 @@ export const destinations = [
     description: "A grand Indo-Saracenic royal palace, one of India's most visited monuments.",
   },
   {
-    slug: "chamundeshwari-temple",
-    name: "Chamundeshwari Temple",
-    image: { src: "chamundeshwari-temple.jpg", alt: "Chamundeshwari Temple atop Chamundi Hill, Mysore" },
-    description: "A historic hilltop temple overlooking Mysore, dedicated to goddess Chamundeshwari.",
-  },
-  {
     slug: "ranganathittu-bird-sanctuary",
     name: "Ranganathittu Bird Sanctuary",
-    image: { src: "bird-sanctuary.png", alt: "Ranganathittu Bird Sanctuary river islets near Mysore" },
+    image: { src: "bird-sanctuary.jpg", alt: "Ranganathittu Bird Sanctuary river islets near Mysore" },
     description: "A riverine bird sanctuary on the Kaveri, home to storks, pelicans, and migratory birds.",
+  },
+  {
+    slug: "panambur-beach",
+    name: "Panambur Beach",
+    image: { src: "panamburu-beach.jpg", alt: "Panambur Beach, Mangaluru" },
+    description: "A wide, popular Mangaluru beach known for its watersports and beachside food stalls.",
+  },
+  {
+    slug: "mysore-zoo",
+    name: "Mysore Zoo",
+    image: { src: "mysore-zoo.jpg", alt: "Sri Chamarajendra Zoological Gardens, Mysore" },
+    description: "One of India's oldest zoos, home to a wide range of native and exotic wildlife.",
+  },
+  {
+    slug: "kemmannu-hanging-bridge",
+    name: "Kemmannu Hanging Bridge",
+    image: { src: "kemmannu-hanging-bridge.jpg", alt: "Kemmannu hanging bridge over backwaters, Udupi" },
+    description: "A scenic suspension footbridge over the backwaters, popular for evening walks and photos.",
+  },
+  {
+    slug: "honnavar-mangrove-forest",
+    name: "Honnavar Mangrove Forest",
+    image: { src: "mangrove-forest-honnavar.jpg", alt: "Mangrove forest backwaters at Honnavar" },
+    description: "Quiet backwater mangroves best explored by boat, rich with coastal birdlife.",
+  },
+  {
+    slug: "coastal-palm-sunset",
+    name: "Coastal Palm Sunset",
+    image: { src: "gallery-palm-sunset.jpg", alt: "Palm-lined coastline at sunset, Udupi" },
+    description: "A classic palm-fringed coastal sunset, the postcard shot of the Udupi coast.",
+  },
+  {
+    slug: "krs-dam",
+    name: "KRS Dam",
+    image: { src: "krs-dam.jpg", alt: "Krishna Raja Sagara (KRS) Dam near Mysore" },
+    description: "A historic dam on the Kaveri, famed for its illuminated musical fountain gardens.",
   },
 ];

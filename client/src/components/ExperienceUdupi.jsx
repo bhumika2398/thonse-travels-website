@@ -1,19 +1,79 @@
+import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal.jsx";
 
 const CLIPS = [
   {
-    src: "/videos/float-2.mp4",
-    caption: "Sunset Along the Malpe Coast",
+    src: "/videos/float-4.mp4",
+    caption: "Hanging Bridge, Udupi",
     floatDuration: "7s",
     floatDelay: "0s",
   },
   {
-    src: "/videos/float-3.mp4",
-    caption: "Backwaters & Coastal Drives",
+    src: "/videos/float-5.mp4",
+    caption: "Delta Point",
     floatDuration: "8.5s",
     floatDelay: "0.6s",
   },
 ];
+
+/**
+ * Autoplay video clip, hardened against the browser's autoplay-permission
+ * prompt. The `muted` HTML attribute alone is sometimes not enough — some
+ * browsers/embedded preview environments evaluate the declarative
+ * `autoPlay` attribute before/without reliably honoring `muted`, which can
+ * surface a native "allow autoplay with sound?" permission popup even
+ * though the element is marked muted. Setting `video.muted = true`
+ * explicitly via JS before calling `.play()` (and guarding that call with
+ * `.catch()`, matching the pattern used for the Hero background video)
+ * removes both failure modes.
+ *
+ * Also lazy: this section sits well below the fold, but a plain <video src>
+ * starts fetching the whole file the instant it mounts regardless of
+ * scroll position. An IntersectionObserver defers even setting `src` until
+ * the card is about to scroll into view, mirroring the `loading="lazy"`
+ * treatment every image on the site already gets.
+ */
+function ClipVideo({ clip }) {
+  const videoRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !shouldLoad) return;
+    el.muted = true;
+    el.play().catch(() => {}); // ignore benign autoplay-policy rejections
+  }, [shouldLoad]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="h-64 w-full object-cover sm:h-80"
+      src={shouldLoad ? clip.src : undefined}
+      preload="none"
+      muted
+      loop
+      playsInline
+      aria-label={clip.caption}
+    />
+  );
+}
 
 /**
  * "Experience Udupi" — two small autoplay video cards, each floating
@@ -43,15 +103,7 @@ export default function ExperienceUdupi() {
               >
                 <div className="glass-light overflow-hidden rounded-3xl p-3">
                   <div className="overflow-hidden rounded-2xl">
-                    <video
-                      className="h-64 w-full object-cover sm:h-80"
-                      src={clip.src}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      aria-label={clip.caption}
-                    />
+                    <ClipVideo clip={clip} />
                   </div>
                   <p className="mt-3 px-2 pb-1 text-center font-display text-base font-medium text-ink">
                     {clip.caption}

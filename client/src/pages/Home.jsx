@@ -63,7 +63,7 @@ export default function Home() {
               </p>
             )}
             {cards.map((vehicle, i) => (
-              <Reveal key={vehicle.slug || vehicle.name} delay={i * 120}>
+              <Reveal key={vehicle.slug || vehicle.name || `fleet-card-${i}`} delay={i * 120}>
                 <RideCard vehicle={vehicle} />
               </Reveal>
             ))}
@@ -88,7 +88,7 @@ export default function Home() {
 
           <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {destinations.map((destination, i) => (
-              <Reveal key={destination.slug} delay={i * 90}>
+              <Reveal key={destination.slug || `destination-${i}`} delay={i * 90}>
                 <DestinationCard destination={destination} />
               </Reveal>
             ))}

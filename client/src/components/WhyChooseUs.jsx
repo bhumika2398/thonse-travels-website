@@ -1,4 +1,4 @@
-import { Clock, Compass, Sparkles, CreditCard } from "lucide-react";
+import { Clock, Compass, Sparkles, CreditCard, MapPin } from "lucide-react";
 import Reveal from "./Reveal.jsx";
 
 const REASONS = [
@@ -26,6 +26,15 @@ const REASONS = [
     description:
       "The fare we quote is the fare you pay — no hidden fees, no surge pricing, no last-minute surprises.",
   },
+  // Moved down from the Hero video overlay — trust/credibility detail
+  // belongs here, in context with the rest of the reasons to book, not
+  // stacked on top of the Hero's headline and search strip.
+  {
+    Icon: MapPin,
+    title: "Live GPS Tracking",
+    description:
+      "Every ride is trackable in real time from pickup to drop-off, so you always know exactly where the car is.",
+  },
 ];
 
 export default function WhyChooseUs() {
@@ -41,7 +50,10 @@ export default function WhyChooseUs() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* 3-column grid (was 4) — 5 cards now that Live GPS Tracking moved
+            in from the Hero, and 3 columns wraps 5 items into a balanced
+            3-then-2 layout instead of 4-then-1. */}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {REASONS.map(({ Icon, title, description }, i) => (
             <Reveal key={title} delay={i * 100}>
               <div className="glass-card glass-dark h-full p-7">

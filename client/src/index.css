@@ -113,6 +113,20 @@ textarea:focus-visible {
     border-radius: 20px;
   }
 
+  /* Exact same formula as Navbar's scrolled (`.header[style]`) glass —
+     charcoal-tinted, blur(20px) saturate(140%), border + inset top-edge
+     highlight — reused verbatim (not just the .glass-dark/.glass-light
+     mechanics) wherever something needs to visually match the navbar
+     specifically, e.g. the Reviews cards. */
+  .glass-navbar {
+    background: rgba(15, 46, 40, 0.82);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+  }
+
   /* Small pill badges (Hero trust badges, footer badge) always sit on
      dark backdrops, so .glass is just a radius-free alias of .glass-dark
      (radius overridden to rounded-full by whichever component uses it). */
@@ -153,6 +167,11 @@ textarea:focus-visible {
   .glass-card.glass-light:hover {
     box-shadow: 0 16px 40px rgba(15, 46, 40, 0.18);
     border-color: rgba(126, 118, 103, 0.5);
+  }
+
+  .glass-card.glass-navbar:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    border-color: rgba(255, 255, 255, 0.28);
   }
 
   .btn-gold {

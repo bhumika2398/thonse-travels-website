@@ -1,12 +1,24 @@
+import { useEffect, useRef } from "react";
+
 export default function PageHeader({ eyebrow, title, subtitle, image, imageAlt = "" }) {
+  const imgRef = useRef(null);
+
+  // Set via the DOM directly rather than a JSX prop: React 18's host
+  // component property whitelist doesn't include `fetchPriority` (that
+  // mapping to the `fetchpriority` attribute only landed in React 19), so
+  // passing it as JSX triggers an "unrecognized prop" dev warning.
+  useEffect(() => {
+    imgRef.current?.setAttribute("fetchpriority", "high");
+  }, []);
+
   return (
     <section className="relative flex min-h-[60vh] items-end overflow-hidden bg-charcoal">
       <div className="absolute inset-0">
         <img
+          ref={imgRef}
           src={`/images/${image}`}
           alt={imageAlt}
           loading="eager"
-          fetchPriority="high"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/30" />
